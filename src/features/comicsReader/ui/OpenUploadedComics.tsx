@@ -1,9 +1,8 @@
-import JSZip from 'jszip'
 import { type ChangeEvent, useState } from 'react'
+import JSZip from 'jszip'
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid'
 
-function App() {
-
+export const OpenUploadedComics = () => {
   const [pages, setPages] = useState<string[]>([])
   const [currentPage, setCurrentPage] = useState<number>(0)
 
@@ -37,13 +36,24 @@ function App() {
           type='file'
         />
       </div>
-      <div className="flex justify-center gap-2 items-center h-full">
-        <ArrowLeftIcon className="size-1/5" onClick={() => setCurrentPage(currentPage - 1)} />
-        <img className="w-10/12 h-full" src={pages[currentPage]} alt="comics page" />
-        <ArrowRightIcon className="size-1/5" onClick={() => setCurrentPage(currentPage + 1)} />
+      <div className="flex justify-center items-center h-full w-full">
+        <button className="size-1/5" onClick={() => setCurrentPage(currentPage - 1)}>
+          {currentPage !== 0 && ( <ArrowLeftIcon /> )}
+        </button>
+
+        {/* Картинка с отступами w-1/12 (8.33%) */}
+        <div className="flex-grow flex justify-center px-[8.33%]">
+          <img
+            className="max-h-full max-w-full object-contain"
+            src={pages[currentPage]}
+            alt="Here would be comics"
+          />
+        </div>
+
+        <button className="size-1/5" onClick={() => setCurrentPage(currentPage + 1)}>
+          {currentPage !== pages.length - 1 && ( <ArrowRightIcon /> )}
+        </button>
       </div>
     </>
   )
 }
-
-export default App
