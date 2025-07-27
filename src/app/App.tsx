@@ -1,10 +1,10 @@
 import './styles/index.css'
-import { ReaderPage } from '../pages/readerPage'
+import { AppRouter } from './routes'
 
 function App() {
   return (
     <>
-      <ReaderPage />
+      <AppRouter />
     </>
   )
 }
